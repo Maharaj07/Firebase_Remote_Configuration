@@ -22,7 +22,6 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     _loadConfig();
 
-    // ✅ auto refresh every 30s
     _pollingTimer = Timer.periodic(const Duration(seconds: 5), (timer) {
       _loadConfig();
     });
@@ -66,11 +65,10 @@ class _HomeScreenState extends State<HomeScreen> {
             child: AppLogo(appIcon: appIcon),
             radius: 12.0,
           ),
-        ), // Dynamic App Icon
+        ),
       ),
       body: ListView(
         children: [
-          // 🔔 Special Alert (general banner)
           if (specialAlert.isNotEmpty)
             SpecialAlertBanner(alertType: specialAlert),
 
@@ -82,7 +80,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
 
-          // 🎉 Festival banner
           if (festivalAlert.toLowerCase() == "diwali")
             _buildFestivalBanner("🎆 Happy Diwali! 🎆", Colors.orange),
           if (festivalAlert.toLowerCase() == "pongal")
@@ -90,7 +87,6 @@ class _HomeScreenState extends State<HomeScreen> {
           if (festivalAlert.toLowerCase() == "christmas")
             _buildFestivalBanner("🎄 Merry Christmas! 🎄", Colors.red),
 
-          // 🔹 Dynamic layout: Grid or List
           if (homeLayout == "grid")
             GridView.count(
               shrinkWrap: true,
